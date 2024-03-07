@@ -11,6 +11,23 @@ const ElementComponent = () => {
     const stageHeight = 500;
     const rectWidth = 100;
     const rectHeight = 100;
+    const posT = [
+        {
+            x: 0,
+            y: 0
+        },
+        {
+            x:100,
+            y:100
+        },
+        {
+            x:200,
+            y:200
+        },
+        {
+            x:300,
+            y:300
+        },]
 
     const handleDragEnd = (e) => {
         console.log(e)
@@ -68,9 +85,32 @@ const ElementComponent = () => {
         <>
             <Stage width={stageWidth} height={stageHeight}>
                 <Layer>
-                    {listGroup.map((group) => {
-                        return group;
+                    {posT.map((pos, index) => {
+                        return (
+                            <Group
+                                draggable
+                                key={index}
+                                onDragEnd={handleDragEnd}
+                                dragBoundFunc={dragBoundFunc}
+                                x={pos.x}
+                                y={pos.y}
+                            >
+                                <Rect
+                                    width={rectWidth}
+                                    height={rectHeight}
+                                    fill="red"
+                                />
+                                <Text
+                                    fill="white"
+                                    width={rectWidth}
+                                    height={rectHeight}
+                                />
+                            </Group>
+                        )
                     })}
+                    {/* {listGroup.map((group) => {
+                        return group;
+                    })} */}
                     {/* <Group
                     draggable
                     onDragEnd={handleDragEnd}
